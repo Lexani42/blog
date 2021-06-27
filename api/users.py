@@ -166,3 +166,29 @@ def ban(user_id):
     user.role = role
     user.save()
     return 'Ok', 200
+
+
+@is_logged
+def follow(user_id):
+    user = Users.get(username=session['username'])
+    try:
+        target = Users.get(id=user_id)
+    except Users.DoesNotExist:
+        return 'User not found', 404
+    try:
+        Follows.get(from_user=user, to_user=target)
+        return 'Already following', 409
+    except Follows.DoesNotExist:
+        Follows.create(from_user=user, to_user=target)
+        return 'Ok', 200
+
+
+@is_logged
+def unfollow(user_id):
+    user = Users.get(username=session['username'])
+    try:
+        target = Users.get(id=user_id)
+    except Users.DoesNotExist:
+        return 'User not found', 404
+    Follows.delete().where((Follows.from_user == user) & (Follows.to_user == target)).execute()
+    return 'Ok', 200
