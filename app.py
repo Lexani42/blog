@@ -65,7 +65,7 @@ app.add_url_rule(
     methods=['DELETE']
 )
 
-#roles
+# roles
 app.add_url_rule(
     '/api/roles/',
     'create_role',
