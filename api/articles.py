@@ -40,7 +40,6 @@ def get_article(article_id):
         res['comments'][comment.id] = {'author': comment.author.id, 'content': comment.content}
 
 
-
 @is_logged
 def update_article(article_id):
     user = Users.get(username=session['username'])
