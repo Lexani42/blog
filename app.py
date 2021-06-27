@@ -73,15 +73,15 @@ app.add_url_rule(
     methods=['POST']
 )
 app.add_url_rule(
-    '/api/roles/<role_id>/',
+    '/api/roles/<role_id>',
     'edit_role',
     roles.edit_role,
     methods=['PUT']
 )
 app.add_url_rule(
-    '/api/roles/',
-    'create_role',
-    roles.create_role,
+    '/api/roles/<role_id>',
+    'delete_role',
+    roles.delete_role,
     methods=['DELETE']
 )
 
