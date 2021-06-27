@@ -17,7 +17,7 @@ def register():
     try:
         Users.create(username=username, password=password, email=email)
     except IntegrityError:
-        return 'User is already exists', 400
+        return 'User is already exists', 409
     return 'Registered', 200
 
 
@@ -126,7 +126,7 @@ def delete(user_id):
     requesting = Users.get(username=session['username'])
     if not requesting.role.delete_user:
         return 'Forbidden', 403
-    Users.delete().where(Users.id == user_id)
+    Users.delete().where(Users.id == user_id).execute()
     return 'OK', 200
 
 

@@ -18,7 +18,7 @@ class Roles(BaseModel):
     delete_comments_and_topics = BooleanField(null=False, default=False)
     ban_user = BooleanField(null=False, default=False)
     delete_user = BooleanField(null=False, default=False)
-    change_user_role = BooleanField(null=False, default=False)
+    roles = BooleanField(null=False, default=False)
 
 
 class Users(BaseModel):

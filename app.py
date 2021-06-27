@@ -1,5 +1,5 @@
 from flask import Flask
-from api import users
+from api import users, roles
 app = Flask(__name__)
 app.secret_key = 'SDjkgshdfjghsdjfghKJSDfhgkjdsfg'
 
@@ -57,6 +57,32 @@ app.add_url_rule(
     'ban',
     users.ban,
     methods=['POST']
+)
+app.add_url_rule(
+    '/api/users/<user_id>',
+    'delete',
+    users.delete,
+    methods=['DELETE']
+)
+
+#roles
+app.add_url_rule(
+    '/api/roles/',
+    'create_role',
+    roles.create_role,
+    methods=['POST']
+)
+app.add_url_rule(
+    '/api/roles/<role_id>/',
+    'edit_role',
+    roles.edit_role,
+    methods=['PUT']
+)
+app.add_url_rule(
+    '/api/roles/',
+    'create_role',
+    roles.create_role,
+    methods=['DELETE']
 )
 
 if __name__ == '__main__':
